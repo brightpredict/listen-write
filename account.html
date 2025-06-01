@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Account</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #fff);
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      background: #00796b;
+      color: white;
+      padding: 1rem 2rem;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-area {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .profile-area img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #00796b;
+    }
+
+    .profile-info h3 {
+      margin: 0;
+    }
+
+    .info-block {
+      margin-top: 1rem;
+      line-height: 1.6;
+    }
+
+    a.button, button.button {
+      display: inline-block;
+      margin-top: 1.5rem;
+      background: #00796b;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    a.button:hover, button.button:hover {
+      background: #004d40;
+    }
+
+    .withdraw-section {
+      margin-top: 2rem;
+      border-top: 1px solid #ccc;
+      padding-top: 1rem;
+    }
+
+    .withdraw-section input {
+      padding: 0.5rem;
+      width: 120px;
+      margin-right: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .message {
+      margin-top: 1rem;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h2>My Account</h2>
+  </header>
+
+  <div class="container">
+    <div class="profile-area">
+      <img src="https://via.placeholder.com/100" alt="Profile Photo" id="profilePhoto">
+      <div class="profile-info">
+        <h3>John Doe</h3>
+        <p><strong>Balance:</strong> $<span id="balance">120.50</span></p>
+      </div>
+    </div>
+
+    <div class="info-block">
+      <p><strong>Email:</strong> johndoe@email.com</p>
+      <p><strong>Member Since:</strong> January 2024</p>
+      <p><strong>Completed Tasks:</strong> 35</p>
+    </div>
+
+    <div class="withdraw-section">
+      <h4>Withdraw Funds</h4>
+      <input type="number" id="withdrawAmount" placeholder="Amount" min="150" step="0.01">
+      <button class="button" onclick="withdraw()">Withdraw</button>
+      <p id="message" class="message"></p>
+    </div>
+    <div class="withdraw-section">
+
+    <a href="index.html" class="button">Back to Dashboard</a>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+<script>
+  function logout() {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("username");
+    window.location.href = "login.html";
+  }
+</script>
+
+  </div>
+
+  <script>
+    function withdraw() {
+  const balanceEl = document.getElementById('balance');
+  const messageEl = document.getElementById('message');
+  const withdrawAmount = parseFloat(document.getElementById('withdrawAmount').value);
+  const currentBalance = parseFloat(balanceEl.textContent);
+
+  if (isNaN(withdrawAmount) || withdrawAmount <= 0) {
+    messageEl.textContent = "Enter a valid amount.";
+    messageEl.style.color = "red";
+    return;
+  }
+
+  if (withdrawAmount < 150) {
+    messageEl.textContent = "Minimum withdrawal amount is $150.";
+    messageEl.style.color = "red";
+    return;
+  }
+
+  if (withdrawAmount > currentBalance) {
+    messageEl.textContent = "Insufficient funds.";
+    messageEl.style.color = "red";
+  } else {
+    const newBalance = (currentBalance - withdrawAmount).toFixed(2);
+    balanceEl.textContent = newBalance;
+    messageEl.textContent = Withdrawal of $${withdrawAmount.toFixed(2)} successful.;
+    messageEl.style.color = "green";
+  }
+}
+ // Redirect to login if not logged in
+ if (localStorage.getItem("isLoggedIn") !== "true") {
+    window.location.href = "login.html";
+  }
+
+</script>
+  </script>
+
+</body>
+</html>

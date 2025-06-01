@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TranscriptoRewards</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+  <header class="bg-blue-600 text-white p-6">
+    <h1 class="text-3xl font-bold">Welcome to TranscriptoRewards</h1>
+    <p class="mt-2">Earn money by transcribing – up to 2 tasks daily!</p>
+  </header>
+
+  <main class="p-6 space-y-6">
+    <section class="bg-white p-4 rounded shadow">
+      <h2 class="text-xl font-semibold mb-2">How It Works</h2>
+      <ul class="list-disc list-inside space-y-1">
+        <li>Transcribe up to 2 items per day – earn $2 per transcription</li>
+        <li>Earn $1 for every 10 friends you refer</li>
+        <li>Registration fee: $2 (one-time)</li>
+        <li>Must understand at least one language</li>
+        <li>Valid email required for registration</li>
+      </ul>
+    </section>
+
+    <section class="bg-white p-4 rounded shadow">
+      <h2 class="text-xl font-semibold mb-4">Your Weekly Tasks</h2>
+      <div id="taskGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- JavaScript will populate days and tasks here -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-blue-600 text-white text-center p-4 mt-6">
+    <p>&copy; 2025 TranscriptoRewards. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+    const tasks = {
+      Monday: ['Task A1', 'Task A2'],
+      Tuesday: ['Task B1', 'Task B2'],
+      Wednesday: ['Task C1', 'Task C2'],
+      Thursday: ['Task D1', 'Task D2'],
+      Friday: ['Task E1', 'Task E2']
+    };
+
+    const taskGrid = document.getElementById('taskGrid');
+
+    days.forEach(day => {
+      const dayColumn = document.createElement('div');
+      dayColumn.className = 'bg-gray-50 p-4 rounded shadow';
+
+      const header = document.createElement('h3');
+      header.className = 'font-bold text-lg mb-2';
